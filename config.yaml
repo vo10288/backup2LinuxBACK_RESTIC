@@ -1,0 +1,274 @@
+# ============================================================
+# BACKUP SYSTEM v3.0 — Restic + Backrest
+# ============================================================
+# Sistema di backup enterprise con:
+# - Restic: deduplicazione, crittografia nativa, snapshot
+# - Backrest: WebUI per gestione e monitoraggio
+# - Protezione ransomware multi-livello
+# ============================================================
+
+general:
+  hostname: "backup-server"
+  log_dir: /var/log/backup_system
+  log_level: INFO
+  state_dir: /var/lib/backup_system
+  lock_file: /var/run/backup_system.lock
+  dry_run: false
+  parallel_workers: 4    # Quante sorgenti in parallelo
+
+# --- RESTIC REPOSITORY ---
+restic:
+  # Repository principale (può essere locale, SFTP, S3, B2, ecc.)
+  repository: /mnt/backup/restic-repo
+  # Alternative:
+  # repository: sftp:backup@nas.local:/volume1/restic-repo
+  # repository: s3:s3.amazonaws.com/my-backup-bucket
+  # repository: b2:my-bucket:/restic
+  # repository: rest:http://nas.local:8000/
+  
+  # Password del repository (usare una delle opzioni)
+  password_file: /etc/backup_system/restic.password
+  # Oppure: password_command: "cat /etc/backup_system/restic.password"
+  # Oppure variabile ambiente: RESTIC_PASSWORD
+  
+  # Cache per velocizzare le operazioni
+  cache_dir: /var/cache/restic
+  
+  # Compressione (auto, off, max)
+  compression: auto
+  
+  # Limiti bandwidth (0 = nessun limite)
+  bandwidth_limit_upload: 0      # KB/s
+  bandwidth_limit_download: 0    # KB/s
+
+# --- RETENTION POLICY ---
+# Restic mantiene automaticamente gli snapshot secondo questa policy
+retention:
+  keep_last: 3           # Ultimi N snapshot
+  keep_hourly: 0         # Uno per ora (ultime N ore)
+  keep_daily: 7          # Uno per giorno (ultimi 7 giorni)
+  keep_weekly: 4         # Uno per settimana (ultime 4 settimane)
+  keep_monthly: 12       # Uno per mese (ultimi 12 mesi)
+  keep_yearly: 2         # Uno per anno (ultimi 2 anni)
+  # keep_within: "30d"   # Mantieni tutti gli snapshot degli ultimi 30 giorni
+
+# --- SORGENTI WINDOWS (CIFS/SMB) ---
+sources:
+  - name: "FileServer-Dati"
+    enabled: true
+    type: cifs
+    unc: "//192.168.1.10/Dati"
+    host: "192.168.1.10"
+    mount_point: /mnt/source/fileserver_dati
+    credentials_file: /etc/backup_system/creds_fileserver
+    mount_options: "vers=3.0,seal,ro,noserverino"
+    # Percorsi da includere (relativi al mount point, vuoto = tutto)
+    include_paths: []
+    # Pattern da escludere
+    exclude_patterns:
+      - "*.tmp"
+      - "*.temp"
+      - "~$*"
+      - "Thumbs.db"
+      - ".DS_Store"
+      - "$Recycle.Bin"
+      - "System Volume Information"
+    # Tag per identificare questo backup
+    tags:
+      - "fileserver"
+      - "dati-condivisi"
+    priority: 1
+
+  - name: "FileServer-Archivio"
+    enabled: true
+    type: cifs
+    unc: "//192.168.1.10/Archivio"
+    host: "192.168.1.10"
+    mount_point: /mnt/source/fileserver_archivio
+    credentials_file: /etc/backup_system/creds_fileserver
+    mount_options: "vers=3.0,seal,ro,noserverino"
+    include_paths: []
+    exclude_patterns:
+      - "*.tmp"
+      - "~$*"
+    tags:
+      - "fileserver"
+      - "archivio"
+    priority: 2
+
+  - name: "PC-Direzione"
+    enabled: true
+    type: cifs
+    unc: "//192.168.1.50/C$"
+    host: "192.168.1.50"
+    mount_point: /mnt/source/pc_direzione
+    credentials_file: /etc/backup_system/creds_domain_admin
+    mount_options: "vers=3.0,seal,ro,noserverino"
+    include_paths:
+      - "Users"
+    exclude_patterns:
+      - "*.tmp"
+      - "pagefile.sys"
+      - "hiberfil.sys"
+      - "swapfile.sys"
+      - "NTUSER.DAT*"
+      - "ntuser.dat*"
+      - "AppData/Local/Temp"
+      - "AppData/Local/Microsoft/Windows/INetCache"
+      - "AppData/Local/Google/Chrome/User Data/Default/Cache"
+    tags:
+      - "workstation"
+      - "direzione"
+    priority: 3
+
+  - name: "PC-Contabilita"
+    enabled: true
+    type: cifs
+    unc: "//192.168.1.51/C$"
+    host: "192.168.1.51"
+    mount_point: /mnt/source/pc_contabilita
+    credentials_file: /etc/backup_system/creds_domain_admin
+    mount_options: "vers=3.0,seal,ro,noserverino"
+    include_paths:
+      - "Users"
+      - "Gestionale"
+    exclude_patterns:
+      - "*.tmp"
+      - "pagefile.sys"
+      - "hiberfil.sys"
+      - "AppData/Local/Temp"
+    tags:
+      - "workstation"
+      - "contabilita"
+    priority: 3
+
+  - name: "PC-Commerciale"
+    enabled: true
+    type: cifs
+    unc: "//192.168.1.52/C$"
+    host: "192.168.1.52"
+    mount_point: /mnt/source/pc_commerciale
+    credentials_file: /etc/backup_system/creds_domain_admin
+    mount_options: "vers=3.0,seal,ro,noserverino"
+    include_paths:
+      - "Users"
+    exclude_patterns:
+      - "*.tmp"
+      - "pagefile.sys"
+      - "AppData/Local/Temp"
+    tags:
+      - "workstation"
+      - "commerciale"
+    priority: 3
+
+  - name: "PC-Tecnico"
+    enabled: true
+    type: cifs
+    unc: "//192.168.1.53/C$"
+    host: "192.168.1.53"
+    mount_point: /mnt/source/pc_tecnico
+    credentials_file: /etc/backup_system/creds_domain_admin
+    mount_options: "vers=3.0,seal,ro,noserverino"
+    include_paths:
+      - "Users"
+      - "Progetti"
+    exclude_patterns:
+      - "*.tmp"
+      - "pagefile.sys"
+      - "node_modules"
+      - ".git/objects"
+      - "__pycache__"
+      - "*.o"
+      - "*.obj"
+    tags:
+      - "workstation"
+      - "tecnico"
+    priority: 3
+
+# --- SICUREZZA ---
+security:
+  # Anomaly detection pre-backup
+  anomaly_detection:
+    enabled: true
+    max_change_percent: 50        # Blocca se >50% file cambiati
+    max_new_files_percent: 40     # Blocca se >40% file nuovi
+    max_deleted_percent: 30       # Blocca se >30% file cancellati
+    suspicious_extensions:
+      - ".encrypted"
+      - ".locked"
+      - ".crypto"
+      - ".crypt"
+      - ".ransom"
+      - ".wcry"
+      - ".wncry"
+      - ".locky"
+      - ".cerber"
+      - ".zepto"
+      - ".zzzzz"
+      - ".aaa"
+      - ".abc"
+      - ".xyz"
+      - ".zzz"
+      - ".micro"
+      - ".enc"
+      - ".crypted"
+
+  # Verifica integrità repository
+  integrity_check:
+    enabled: true
+    # Verifica completa ogni N giorni (restic check)
+    full_check_interval_days: 7
+    # Leggi una percentuale dei dati per verificarli
+    read_data_percent: 5
+
+# --- RESILIENZA ---
+resilience:
+  # Pre-check sorgenti
+  pre_check:
+    enabled: true
+    ping_timeout: 3
+    smb_timeout: 10
+  
+  # Retry
+  mount_retries: 3
+  mount_retry_delay: 5
+  restic_retries: 2
+  restic_retry_delay: 30
+
+# --- BACKREST ---
+backrest:
+  enabled: true
+  # Backrest gira come servizio separato, qui solo configurazione di riferimento
+  port: 9898
+  data_dir: /var/lib/backrest
+  config_file: /etc/backrest/config.json
+
+# --- NOTIFICHE ---
+notifications:
+  email:
+    enabled: false
+    smtp_server: "smtp.example.com"
+    smtp_port: 587
+    smtp_tls: true
+    smtp_user: "backup@example.com"
+    smtp_password: "changeme"
+    recipients:
+      - "admin@example.com"
+    only_on_error: false
+
+  webhook:
+    enabled: false
+    # Supporta Slack, Discord, Teams, Gotify, Telegram, ecc.
+    url: "https://hooks.slack.com/services/XXX/YYY/ZZZ"
+    # Oppure Gotify:
+    # url: "https://gotify.example.com/message?token=XXX"
+
+  # Shoutrrr (supporta molti servizi)
+  shoutrrr:
+    enabled: false
+    urls: []
+    # Esempi:
+    # - "slack://token-a/token-b/token-c"
+    # - "discord://token@id"
+    # - "telegram://token@telegram?chats=@channel-1"
+    # - "gotify://gotify.example.com/token"
