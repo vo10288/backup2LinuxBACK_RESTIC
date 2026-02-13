@@ -1,0 +1,255 @@
+<svg viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#22c55e"/>
+      <stop offset="100%" style="stop-color:#16a34a"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#a855f7"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="100%" style="stop-color:#ea580c"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4"/>
+      <stop offset="100%" style="stop-color:#0891b2"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+  
+  <!-- Grid pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#334155" stroke-width="0.5" opacity="0.3"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Title -->
+  <text x="600" y="55" text-anchor="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="32" font-weight="bold">
+    🛡️ Backup System v3.0 — Enterprise Architecture
+  </text>
+  <text x="600" y="85" text-anchor="middle" fill="#94a3b8" font-family="Arial, sans-serif" font-size="16">
+    Restic + Backrest | Deduplication | Encryption | Ransomware Detection
+  </text>
+  
+  <!-- Connection Lines -->
+  <g stroke="#475569" stroke-width="2" fill="none" opacity="0.6">
+    <!-- Sources to Anomaly -->
+    <path d="M 230 240 Q 300 240 340 280" stroke-dasharray="5,5"/>
+    <path d="M 230 320 L 340 320"/>
+    <path d="M 230 400 Q 300 400 340 360"/>
+    
+    <!-- Anomaly to Restic -->
+    <path d="M 470 320 L 530 320"/>
+    
+    <!-- Restic to Repository -->
+    <path d="M 660 320 L 720 320"/>
+    
+    <!-- Repository to Backends -->
+    <path d="M 850 280 Q 900 240 950 240"/>
+    <path d="M 850 320 L 950 320"/>
+    <path d="M 850 360 Q 900 400 950 400"/>
+    
+    <!-- Restic to WebUI -->
+    <path d="M 595 390 L 595 450"/>
+    
+    <!-- Restic to Notifications -->
+    <path d="M 660 350 Q 750 420 800 450"/>
+  </g>
+  
+  <!-- Flow Arrows -->
+  <g fill="#3b82f6">
+    <polygon points="335,315 345,320 335,325"/>
+    <polygon points="525,315 535,320 525,325"/>
+    <polygon points="715,315 725,320 715,325"/>
+    <polygon points="590,445 595,455 600,445"/>
+  </g>
+  
+  <!-- Sources Box -->
+  <g filter="url(#shadow)">
+    <rect x="50" y="200" width="180" height="240" rx="12" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <rect x="50" y="200" width="180" height="40" rx="12" fill="url(#blueGrad)"/>
+    <text x="140" y="227" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+      📂 DATA SOURCES
+    </text>
+    
+    <!-- Source items -->
+    <g fill="#94a3b8" font-family="Arial, sans-serif" font-size="12">
+      <rect x="65" y="255" width="150" height="30" rx="6" fill="#334155"/>
+      <text x="140" y="275" text-anchor="middle" fill="#e2e8f0">🖥️ Windows CIFS</text>
+      
+      <rect x="65" y="295" width="150" height="30" rx="6" fill="#334155"/>
+      <text x="140" y="315" text-anchor="middle" fill="#e2e8f0">🐧 Linux NFS</text>
+      
+      <rect x="65" y="335" width="150" height="30" rx="6" fill="#334155"/>
+      <text x="140" y="355" text-anchor="middle" fill="#e2e8f0">📁 Local Paths</text>
+      
+      <rect x="65" y="375" width="150" height="30" rx="6" fill="#334155"/>
+      <text x="140" y="395" text-anchor="middle" fill="#e2e8f0">☁️ Cloud Sync</text>
+    </g>
+  </g>
+  
+  <!-- Anomaly Detection Box -->
+  <g filter="url(#shadow)">
+    <rect x="340" y="260" width="130" height="120" rx="12" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+    <rect x="340" y="260" width="130" height="35" rx="12" fill="#dc2626"/>
+    <text x="405" y="283" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="11" font-weight="bold">
+      🚨 SECURITY
+    </text>
+    
+    <g fill="#fca5a5" font-family="Arial, sans-serif" font-size="10">
+      <text x="405" y="315" text-anchor="middle">Ransomware</text>
+      <text x="405" y="330" text-anchor="middle">Detection</text>
+      <text x="405" y="355" text-anchor="middle" fill="#94a3b8">Anomaly Check</text>
+      <text x="405" y="370" text-anchor="middle" fill="#94a3b8">Pre-validation</text>
+    </g>
+  </g>
+  
+  <!-- Restic Engine Box -->
+  <g filter="url(#shadow)">
+    <rect x="530" y="240" width="130" height="150" rx="12" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <rect x="530" y="240" width="130" height="35" rx="12" fill="url(#greenGrad)"/>
+    <text x="595" y="263" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">
+      ⚡ RESTIC
+    </text>
+    
+    <g fill="#86efac" font-family="Arial, sans-serif" font-size="10">
+      <text x="595" y="295" text-anchor="middle">✓ Deduplication</text>
+      <text x="595" y="315" text-anchor="middle">✓ AES-256</text>
+      <text x="595" y="335" text-anchor="middle">✓ Incremental</text>
+      <text x="595" y="355" text-anchor="middle">✓ Snapshots</text>
+      <text x="595" y="375" text-anchor="middle">✓ Compression</text>
+    </g>
+  </g>
+  
+  <!-- Repository Box -->
+  <g filter="url(#shadow)">
+    <rect x="720" y="260" width="130" height="120" rx="12" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+    <rect x="720" y="260" width="130" height="35" rx="12" fill="url(#purpleGrad)"/>
+    <text x="785" y="283" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="11" font-weight="bold">
+      💾 REPOSITORY
+    </text>
+    
+    <g fill="#d8b4fe" font-family="Arial, sans-serif" font-size="10">
+      <text x="785" y="315" text-anchor="middle">Encrypted</text>
+      <text x="785" y="330" text-anchor="middle">Deduplicated</text>
+      <text x="785" y="355" text-anchor="middle" fill="#94a3b8">Immutable</text>
+      <text x="785" y="370" text-anchor="middle" fill="#94a3b8">Snapshots</text>
+    </g>
+  </g>
+  
+  <!-- Cloud Backends -->
+  <g filter="url(#shadow)">
+    <rect x="950" y="200" width="200" height="240" rx="12" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <rect x="950" y="200" width="200" height="40" rx="12" fill="url(#cyanGrad)"/>
+    <text x="1050" y="227" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+      ☁️ BACKENDS
+    </text>
+    
+    <g font-family="Arial, sans-serif" font-size="11">
+      <rect x="965" y="255" width="85" height="28" rx="6" fill="#334155"/>
+      <text x="1007" y="274" text-anchor="middle" fill="#fbbf24">S3</text>
+      
+      <rect x="1060" y="255" width="85" height="28" rx="6" fill="#334155"/>
+      <text x="1102" y="274" text-anchor="middle" fill="#f97316">B2</text>
+      
+      <rect x="965" y="293" width="85" height="28" rx="6" fill="#334155"/>
+      <text x="1007" y="312" text-anchor="middle" fill="#3b82f6">Azure</text>
+      
+      <rect x="1060" y="293" width="85" height="28" rx="6" fill="#334155"/>
+      <text x="1102" y="312" text-anchor="middle" fill="#22c55e">GCS</text>
+      
+      <rect x="965" y="331" width="85" height="28" rx="6" fill="#334155"/>
+      <text x="1007" y="350" text-anchor="middle" fill="#a855f7">SFTP</text>
+      
+      <rect x="1060" y="331" width="85" height="28" rx="6" fill="#334155"/>
+      <text x="1102" y="350" text-anchor="middle" fill="#ec4899">REST</text>
+      
+      <rect x="965" y="369" width="180" height="28" rx="6" fill="#334155"/>
+      <text x="1055" y="388" text-anchor="middle" fill="#94a3b8">📁 Local Disk / NAS</text>
+      
+      <rect x="965" y="407" width="180" height="25" rx="6" fill="#0f172a"/>
+      <text x="1055" y="424" text-anchor="middle" fill="#64748b" font-size="10">Multi-destination support</text>
+    </g>
+  </g>
+  
+  <!-- WebUI Box -->
+  <g filter="url(#shadow)">
+    <rect x="500" y="460" width="190" height="100" rx="12" fill="#1e293b" stroke="#f97316" stroke-width="2"/>
+    <rect x="500" y="460" width="190" height="35" rx="12" fill="url(#orangeGrad)"/>
+    <text x="595" y="483" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">
+      🖥️ BACKREST WebUI
+    </text>
+    
+    <g fill="#fed7aa" font-family="Arial, sans-serif" font-size="10">
+      <text x="595" y="515" text-anchor="middle">Browse Snapshots</text>
+      <text x="595" y="530" text-anchor="middle">One-Click Restore</text>
+      <text x="595" y="545" text-anchor="middle" fill="#94a3b8">Port 9898</text>
+    </g>
+  </g>
+  
+  <!-- Notifications Box -->
+  <g filter="url(#shadow)">
+    <rect x="750" y="460" width="160" height="100" rx="12" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+    <rect x="750" y="460" width="160" height="35" rx="12" fill="#475569"/>
+    <text x="830" y="483" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="12" font-weight="bold">
+      🔔 ALERTS
+    </text>
+    
+    <g fill="#94a3b8" font-family="Arial, sans-serif" font-size="10">
+      <text x="830" y="515" text-anchor="middle">📧 Email</text>
+      <text x="830" y="530" text-anchor="middle">💬 Slack/Discord</text>
+      <text x="830" y="545" text-anchor="middle">🔗 Webhooks</text>
+    </g>
+  </g>
+  
+  <!-- Stats Banner -->
+  <g>
+    <rect x="50" y="570" width="280" height="45" rx="8" fill="#1e293b" stroke="#334155"/>
+    <text x="190" y="598" text-anchor="middle" fill="#22c55e" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+      💾 60-80% Storage Savings
+    </text>
+  </g>
+  
+  <g>
+    <rect x="350" y="570" width="220" height="45" rx="8" fill="#1e293b" stroke="#334155"/>
+    <text x="460" y="598" text-anchor="middle" fill="#3b82f6" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+      🔒 AES-256 Encrypted
+    </text>
+  </g>
+  
+  <g>
+    <rect x="590" y="570" width="240" height="45" rx="8" fill="#1e293b" stroke="#334155"/>
+    <text x="710" y="598" text-anchor="middle" fill="#a855f7" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+      ♾️ Unlimited Versions
+    </text>
+  </g>
+  
+  <g>
+    <rect x="850" y="570" width="300" height="45" rx="8" fill="#1e293b" stroke="#334155"/>
+    <text x="1000" y="598" text-anchor="middle" fill="#ef4444" font-family="Arial, sans-serif" font-size="14" font-weight="bold">
+      🛡️ Ransomware Protection
+    </text>
+  </g>
+</svg>

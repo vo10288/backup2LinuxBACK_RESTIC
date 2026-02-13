@@ -1,0 +1,102 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgMain" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bgMain)"/>
+  <rect x="1" y="1" width="798" height="398" rx="8" fill="none" stroke="#334155" stroke-width="2"/>
+  
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-size="24" font-weight="bold">
+    🛡️ Backup System v3.0
+  </text>
+  
+  <!-- Main Flow -->
+  <!-- Sources -->
+  <rect x="30" y="80" width="120" height="200" rx="10" fill="#1e3a5f" stroke="#3b82f6" stroke-width="2"/>
+  <text x="90" y="105" text-anchor="middle" fill="#3b82f6" font-family="Arial" font-size="12" font-weight="bold">SOURCES</text>
+  <text x="90" y="135" text-anchor="middle" fill="#94a3b8" font-family="Arial" font-size="10">🖥️ Windows</text>
+  <text x="90" y="155" text-anchor="middle" fill="#94a3b8" font-family="Arial" font-size="10">🐧 Linux</text>
+  <text x="90" y="175" text-anchor="middle" fill="#94a3b8" font-family="Arial" font-size="10">☁️ Cloud</text>
+  <text x="90" y="195" text-anchor="middle" fill="#94a3b8" font-family="Arial" font-size="10">📁 Local</text>
+  <text x="90" y="225" text-anchor="middle" fill="#64748b" font-family="Arial" font-size="9">CIFS/NFS/S3</text>
+  <text x="90" y="265" text-anchor="middle" fill="#475569" font-family="Arial" font-size="8">read-only mount</text>
+  
+  <!-- Arrow 1 -->
+  <path d="M 150 180 L 190 180" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow)"/>
+  <polygon points="185,175 200,180 185,185" fill="#3b82f6"/>
+  
+  <!-- Security -->
+  <rect x="200" y="120" width="100" height="120" rx="10" fill="#3d1f1f" stroke="#ef4444" stroke-width="2"/>
+  <text x="250" y="145" text-anchor="middle" fill="#ef4444" font-family="Arial" font-size="11" font-weight="bold">🚨 SECURITY</text>
+  <text x="250" y="170" text-anchor="middle" fill="#fca5a5" font-family="Arial" font-size="9">Ransomware</text>
+  <text x="250" y="185" text-anchor="middle" fill="#fca5a5" font-family="Arial" font-size="9">Detection</text>
+  <text x="250" y="210" text-anchor="middle" fill="#94a3b8" font-family="Arial" font-size="8">Anomaly Check</text>
+  <text x="250" y="225" text-anchor="middle" fill="#94a3b8" font-family="Arial" font-size="8">Input Validation</text>
+  
+  <!-- Arrow 2 -->
+  <path d="M 300 180 L 340 180" stroke="#22c55e" stroke-width="3"/>
+  <polygon points="335,175 350,180 335,185" fill="#22c55e"/>
+  
+  <!-- Restic -->
+  <rect x="350" y="100" width="120" height="160" rx="10" fill="#1a3d2e" stroke="#22c55e" stroke-width="2"/>
+  <text x="410" y="125" text-anchor="middle" fill="#22c55e" font-family="Arial" font-size="12" font-weight="bold">⚡ RESTIC</text>
+  <text x="410" y="150" text-anchor="middle" fill="#86efac" font-family="Arial" font-size="9">✓ Deduplication</text>
+  <text x="410" y="168" text-anchor="middle" fill="#86efac" font-family="Arial" font-size="9">✓ AES-256</text>
+  <text x="410" y="186" text-anchor="middle" fill="#86efac" font-family="Arial" font-size="9">✓ Incremental</text>
+  <text x="410" y="204" text-anchor="middle" fill="#86efac" font-family="Arial" font-size="9">✓ Snapshots</text>
+  <text x="410" y="222" text-anchor="middle" fill="#86efac" font-family="Arial" font-size="9">✓ Compression</text>
+  <text x="410" y="248" text-anchor="middle" fill="#4ade80" font-family="Arial" font-size="8" font-weight="bold">60-80% savings</text>
+  
+  <!-- Arrow 3 -->
+  <path d="M 470 180 L 510 180" stroke="#a855f7" stroke-width="3"/>
+  <polygon points="505,175 520,180 505,185" fill="#a855f7"/>
+  
+  <!-- Repository -->
+  <rect x="520" y="80" width="120" height="200" rx="10" fill="#2d1f3d" stroke="#a855f7" stroke-width="2"/>
+  <text x="580" y="105" text-anchor="middle" fill="#a855f7" font-family="Arial" font-size="11" font-weight="bold">💾 REPOSITORY</text>
+  <text x="580" y="135" text-anchor="middle" fill="#c4b5fd" font-family="Arial" font-size="9">☁️ S3</text>
+  <text x="580" y="153" text-anchor="middle" fill="#c4b5fd" font-family="Arial" font-size="9">☁️ B2</text>
+  <text x="580" y="171" text-anchor="middle" fill="#c4b5fd" font-family="Arial" font-size="9">☁️ Azure</text>
+  <text x="580" y="189" text-anchor="middle" fill="#c4b5fd" font-family="Arial" font-size="9">☁️ GCS</text>
+  <text x="580" y="207" text-anchor="middle" fill="#c4b5fd" font-family="Arial" font-size="9">🔒 SFTP</text>
+  <text x="580" y="225" text-anchor="middle" fill="#c4b5fd" font-family="Arial" font-size="9">📁 Local</text>
+  <text x="580" y="255" text-anchor="middle" fill="#94a3b8" font-family="Arial" font-size="8">Encrypted</text>
+  <text x="580" y="270" text-anchor="middle" fill="#94a3b8" font-family="Arial" font-size="8">Immutable</text>
+  
+  <!-- Arrow 4 -->
+  <path d="M 640 180 L 680 180" stroke="#f97316" stroke-width="3"/>
+  <polygon points="675,175 690,180 675,185" fill="#f97316"/>
+  
+  <!-- Backrest -->
+  <rect x="690" y="120" width="90" height="120" rx="10" fill="#3d2a1f" stroke="#f97316" stroke-width="2"/>
+  <text x="735" y="145" text-anchor="middle" fill="#f97316" font-family="Arial" font-size="10" font-weight="bold">🖥️ BACKREST</text>
+  <text x="735" y="170" text-anchor="middle" fill="#fdba74" font-family="Arial" font-size="9">Web UI</text>
+  <text x="735" y="188" text-anchor="middle" fill="#fdba74" font-family="Arial" font-size="9">Browse</text>
+  <text x="735" y="206" text-anchor="middle" fill="#fdba74" font-family="Arial" font-size="9">Restore</text>
+  <text x="735" y="230" text-anchor="middle" fill="#94a3b8" font-family="Arial" font-size="8">:9898</text>
+  
+  <!-- Bottom features bar -->
+  <rect x="30" y="310" width="740" height="70" rx="8" fill="#0f172a" stroke="#334155"/>
+  
+  <g font-family="Arial, sans-serif" font-size="11">
+    <text x="120" y="340" text-anchor="middle" fill="#22c55e" font-weight="bold">💾 Deduplication</text>
+    <text x="120" y="360" text-anchor="middle" fill="#64748b" font-size="9">60-80% space saved</text>
+    
+    <text x="280" y="340" text-anchor="middle" fill="#3b82f6" font-weight="bold">🔒 Encryption</text>
+    <text x="280" y="360" text-anchor="middle" fill="#64748b" font-size="9">AES-256-CTR</text>
+    
+    <text x="440" y="340" text-anchor="middle" fill="#a855f7" font-weight="bold">♾️ Versioning</text>
+    <text x="440" y="360" text-anchor="middle" fill="#64748b" font-size="9">Unlimited snapshots</text>
+    
+    <text x="600" y="340" text-anchor="middle" fill="#ef4444" font-weight="bold">🛡️ Protection</text>
+    <text x="600" y="360" text-anchor="middle" fill="#64748b" font-size="9">Anti-ransomware</text>
+    
+    <text x="720" y="340" text-anchor="middle" fill="#f97316" font-weight="bold">🌐 Multi-Cloud</text>
+    <text x="720" y="360" text-anchor="middle" fill="#64748b" font-size="9">6+ backends</text>
+  </g>
+</svg>

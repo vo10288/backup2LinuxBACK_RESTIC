@@ -1,0 +1,198 @@
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="100%" style="stop-color:#161b22"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#58a6ff"/>
+      <stop offset="100%" style="stop-color:#1f6feb"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3fb950"/>
+      <stop offset="100%" style="stop-color:#238636"/>
+    </linearGradient>
+    <linearGradient id="purple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a371f7"/>
+      <stop offset="100%" style="stop-color:#8957e5"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0883e"/>
+      <stop offset="100%" style="stop-color:#d29922"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#f85149"/>
+      <stop offset="100%" style="stop-color:#da3633"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="900" height="500" fill="url(#bg)"/>
+  
+  <!-- Border -->
+  <rect x="2" y="2" width="896" height="496" rx="8" fill="none" stroke="#30363d" stroke-width="2"/>
+  
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" fill="#f0f6fc" font-family="'Segoe UI', Arial, sans-serif" font-size="22" font-weight="600">
+    Backup System v3.0 Architecture
+  </text>
+  <text x="450" y="55" text-anchor="middle" fill="#8b949e" font-family="'Segoe UI', Arial, sans-serif" font-size="12">
+    Restic Engine • Backrest WebUI • Enterprise Security
+  </text>
+  
+  <!-- Main Flow Arrow Background -->
+  <path d="M 100 250 L 800 250" stroke="#21262d" stroke-width="40" stroke-linecap="round"/>
+  <path d="M 100 250 L 800 250" stroke="#30363d" stroke-width="38" stroke-linecap="round" stroke-dasharray="2,6"/>
+  
+  <!-- SOURCES -->
+  <g>
+    <rect x="30" y="130" width="140" height="240" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+    <rect x="30" y="130" width="140" height="32" rx="8" fill="url(#blue)"/>
+    <text x="100" y="152" text-anchor="middle" fill="#fff" font-family="'Segoe UI', Arial" font-size="12" font-weight="600">SOURCES</text>
+    
+    <g font-family="'Segoe UI', Arial" font-size="10" fill="#c9d1d9">
+      <rect x="42" y="175" width="116" height="24" rx="4" fill="#21262d"/>
+      <text x="100" y="191" text-anchor="middle">🖥️ Windows CIFS</text>
+      
+      <rect x="42" y="207" width="116" height="24" rx="4" fill="#21262d"/>
+      <text x="100" y="223" text-anchor="middle">🐧 Linux NFS</text>
+      
+      <rect x="42" y="239" width="116" height="24" rx="4" fill="#21262d"/>
+      <text x="100" y="255" text-anchor="middle">📁 Local Dirs</text>
+      
+      <rect x="42" y="271" width="116" height="24" rx="4" fill="#21262d"/>
+      <text x="100" y="287" text-anchor="middle">☁️ S3 Sync</text>
+      
+      <rect x="42" y="303" width="116" height="24" rx="4" fill="#21262d"/>
+      <text x="100" y="319" text-anchor="middle">🔌 Custom</text>
+      
+      <text x="100" y="355" text-anchor="middle" fill="#8b949e" font-size="9">Mount read-only</text>
+    </g>
+  </g>
+  
+  <!-- Arrow 1 -->
+  <g>
+    <path d="M 170 250 L 205 250" stroke="#58a6ff" stroke-width="2" marker-end="url(#arrowBlue)"/>
+    <polygon points="205,245 215,250 205,255" fill="#58a6ff"/>
+  </g>
+  
+  <!-- SECURITY -->
+  <g>
+    <rect x="220" y="180" width="130" height="140" rx="8" fill="#161b22" stroke="#f85149" stroke-width="1.5"/>
+    <rect x="220" y="180" width="130" height="32" rx="8" fill="url(#red)"/>
+    <text x="285" y="202" text-anchor="middle" fill="#fff" font-family="'Segoe UI', Arial" font-size="11" font-weight="600">🛡️ SECURITY</text>
+    
+    <g font-family="'Segoe UI', Arial" font-size="9" fill="#f85149">
+      <text x="285" y="230" text-anchor="middle">Anomaly Detection</text>
+      <text x="285" y="248" text-anchor="middle">Ransomware Check</text>
+      <text x="285" y="266" text-anchor="middle" fill="#8b949e">Path Validation</text>
+      <text x="285" y="284" text-anchor="middle" fill="#8b949e">Input Sanitization</text>
+      <text x="285" y="302" text-anchor="middle" fill="#8b949e">No Shell Injection</text>
+    </g>
+  </g>
+  
+  <!-- Arrow 2 -->
+  <g>
+    <path d="M 350 250 L 385 250" stroke="#3fb950" stroke-width="2"/>
+    <polygon points="385,245 395,250 385,255" fill="#3fb950"/>
+  </g>
+  
+  <!-- RESTIC -->
+  <g>
+    <rect x="400" y="160" width="140" height="180" rx="8" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+    <rect x="400" y="160" width="140" height="32" rx="8" fill="url(#green)"/>
+    <text x="470" y="182" text-anchor="middle" fill="#fff" font-family="'Segoe UI', Arial" font-size="12" font-weight="600">⚡ RESTIC</text>
+    
+    <g font-family="'Segoe UI', Arial" font-size="10" fill="#3fb950">
+      <text x="470" y="210" text-anchor="middle">✓ Block Deduplication</text>
+      <text x="470" y="228" text-anchor="middle">✓ AES-256-CTR</text>
+      <text x="470" y="246" text-anchor="middle">✓ Poly1305-AES MAC</text>
+      <text x="470" y="264" text-anchor="middle">✓ Incremental Forever</text>
+      <text x="470" y="282" text-anchor="middle">✓ Snapshot Immutable</text>
+      <text x="470" y="300" text-anchor="middle">✓ Zstd Compression</text>
+      <text x="470" y="325" text-anchor="middle" fill="#8b949e" font-size="9">60-80% space savings</text>
+    </g>
+  </g>
+  
+  <!-- Arrow 3 -->
+  <g>
+    <path d="M 540 250 L 575 250" stroke="#a371f7" stroke-width="2"/>
+    <polygon points="575,245 585,250 575,255" fill="#a371f7"/>
+  </g>
+  
+  <!-- REPOSITORY -->
+  <g>
+    <rect x="590" y="130" width="140" height="240" rx="8" fill="#161b22" stroke="#a371f7" stroke-width="1.5"/>
+    <rect x="590" y="130" width="140" height="32" rx="8" fill="url(#purple)"/>
+    <text x="660" y="152" text-anchor="middle" fill="#fff" font-family="'Segoe UI', Arial" font-size="11" font-weight="600">💾 REPOSITORY</text>
+    
+    <g font-family="'Segoe UI', Arial" font-size="9">
+      <rect x="602" y="175" width="116" height="22" rx="4" fill="#21262d"/>
+      <text x="660" y="190" text-anchor="middle" fill="#ffa657">☁️ Amazon S3</text>
+      
+      <rect x="602" y="203" width="116" height="22" rx="4" fill="#21262d"/>
+      <text x="660" y="218" text-anchor="middle" fill="#f97316">☁️ Backblaze B2</text>
+      
+      <rect x="602" y="231" width="116" height="22" rx="4" fill="#21262d"/>
+      <text x="660" y="246" text-anchor="middle" fill="#58a6ff">☁️ Azure Blob</text>
+      
+      <rect x="602" y="259" width="116" height="22" rx="4" fill="#21262d"/>
+      <text x="660" y="274" text-anchor="middle" fill="#3fb950">☁️ Google GCS</text>
+      
+      <rect x="602" y="287" width="116" height="22" rx="4" fill="#21262d"/>
+      <text x="660" y="302" text-anchor="middle" fill="#a371f7">🔒 SFTP</text>
+      
+      <rect x="602" y="315" width="116" height="22" rx="4" fill="#21262d"/>
+      <text x="660" y="330" text-anchor="middle" fill="#8b949e">📁 Local/NAS</text>
+      
+      <text x="660" y="358" text-anchor="middle" fill="#8b949e" font-size="8">Encrypted at rest</text>
+    </g>
+  </g>
+  
+  <!-- Arrow 4 -->
+  <g>
+    <path d="M 730 250 L 765 250" stroke="#f0883e" stroke-width="2"/>
+    <polygon points="765,245 775,250 765,255" fill="#f0883e"/>
+  </g>
+  
+  <!-- BACKREST -->
+  <g>
+    <rect x="780" y="180" width="100" height="140" rx="8" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+    <rect x="780" y="180" width="100" height="32" rx="8" fill="url(#orange)"/>
+    <text x="830" y="202" text-anchor="middle" fill="#fff" font-family="'Segoe UI', Arial" font-size="10" font-weight="600">🖥️ BACKREST</text>
+    
+    <g font-family="'Segoe UI', Arial" font-size="9" fill="#f0883e">
+      <text x="830" y="228" text-anchor="middle">Web UI</text>
+      <text x="830" y="246" text-anchor="middle">Browse</text>
+      <text x="830" y="264" text-anchor="middle">Restore</text>
+      <text x="830" y="282" text-anchor="middle">Diff</text>
+      <text x="830" y="305" text-anchor="middle" fill="#8b949e" font-size="8">:9898</text>
+    </g>
+  </g>
+  
+  <!-- Notifications branch -->
+  <g>
+    <path d="M 470 340 L 470 400 L 600 400" stroke="#30363d" stroke-width="1.5" fill="none" stroke-dasharray="4,4"/>
+    <rect x="600" y="385" width="180" height="50" rx="6" fill="#21262d" stroke="#30363d"/>
+    <text x="690" y="408" text-anchor="middle" fill="#c9d1d9" font-family="'Segoe UI', Arial" font-size="10" font-weight="600">🔔 Notifications</text>
+    <text x="690" y="425" text-anchor="middle" fill="#8b949e" font-family="'Segoe UI', Arial" font-size="9">Email • Slack • Discord • Webhook</text>
+  </g>
+  
+  <!-- Retention branch -->
+  <g>
+    <path d="M 470 160 L 470 100 L 600 100" stroke="#30363d" stroke-width="1.5" fill="none" stroke-dasharray="4,4"/>
+    <rect x="600" y="75" width="180" height="50" rx="6" fill="#21262d" stroke="#30363d"/>
+    <text x="690" y="98" text-anchor="middle" fill="#c9d1d9" font-family="'Segoe UI', Arial" font-size="10" font-weight="600">📅 Retention Policy</text>
+    <text x="690" y="115" text-anchor="middle" fill="#8b949e" font-family="'Segoe UI', Arial" font-size="9">Daily • Weekly • Monthly • Yearly</text>
+  </g>
+  
+  <!-- Stats bar -->
+  <g>
+    <rect x="30" y="450" width="840" height="35" rx="6" fill="#21262d" stroke="#30363d"/>
+    <text x="130" y="472" text-anchor="middle" fill="#3fb950" font-family="'Segoe UI', Arial" font-size="11" font-weight="600">💾 60-80% Savings</text>
+    <text x="310" y="472" text-anchor="middle" fill="#58a6ff" font-family="'Segoe UI', Arial" font-size="11" font-weight="600">🔒 AES-256</text>
+    <text x="470" y="472" text-anchor="middle" fill="#a371f7" font-family="'Segoe UI', Arial" font-size="11" font-weight="600">♾️ Unlimited Versions</text>
+    <text x="640" y="472" text-anchor="middle" fill="#f85149" font-family="'Segoe UI', Arial" font-size="11" font-weight="600">🛡️ Ransomware Shield</text>
+    <text x="800" y="472" text-anchor="middle" fill="#f0883e" font-family="'Segoe UI', Arial" font-size="11" font-weight="600">🌐 Multi-Cloud</text>
+  </g>
+</svg>
