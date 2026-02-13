@@ -8,11 +8,12 @@
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10+-3776AB.svg?logo=python&logoColor=white)](https://python.org)
 [![Restic](https://img.shields.io/badge/Restic-0.17+-00ADD8.svg?logo=go&logoColor=white)](https://restic.net)
 [![Linux](https://img.shields.io/badge/Platform-Linux-FCC624.svg?logo=linux&logoColor=black)](https://kernel.org)
+[![Security](https://img.shields.io/badge/Security-Hardened-success.svg?logo=shield&logoColor=white)](#-security)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 *Deduplication · Native Encryption · Ransomware Detection · Web UI · Multi-Cloud*
 
-[Features](#-features) · [Quick Start](#-quick-start) · [Configuration](#-configuration) · [Backrest UI](#-backrest-webui) · [Italiano 🇮🇹](#italiano)
+[Features](#-features) · [Quick Start](#-quick-start) · [Configuration](#-configuration) · [Security](#-security) · [Backrest UI](#-backrest-webui) · [Italiano 🇮🇹](#italiano)
 
 </div>
 
@@ -62,6 +63,7 @@ A complete backup system for mixed Linux/Windows environments (SMBs with 10-50 e
 - **Anomaly detection** — alerts on unusual file changes
 - **Pre-check** — verifies source availability before backup
 - **Integrity verification** — periodic `restic check`
+- **Hardened code** — input validation, no shell injection, path traversal protection
 
 ### 📊 Monitoring
 - **Backrest WebUI** — browse snapshots, restore files, view logs
@@ -185,6 +187,59 @@ security:
       - ".ransom"
 ```
 
+## 🔒 Security
+
+This project follows security best practices to protect your backup infrastructure.
+
+### Security Features
+
+| Protection | Description |
+|------------|-------------|
+| **Input Validation** | All external inputs validated with whitelist patterns |
+| **Path Traversal Protection** | `../` and absolute paths blocked, all paths normalized |
+| **Command Injection Prevention** | No `shell=True`, all commands as lists |
+| **Log Injection Prevention** | Newlines and control characters sanitized |
+| **Symlink Protection** | Directory scans don't follow symlinks |
+| **Email Header Injection** | Headers sanitized to prevent SMTP attacks |
+| **Credential Protection** | Files with 600 permissions, never logged |
+
+### Validation Functions
+
+The codebase includes dedicated security functions:
+
+```python
+# Path validation (prevents traversal)
+validate_path(path, base_path=None, must_exist=False)
+validate_subpath(subpath, base_path)
+
+# Input sanitization
+sanitize_log_message(msg)      # Log injection prevention
+sanitize_tag(tag)              # Restic tag validation
+sanitize_hostname(host)        # Hostname/IP validation
+sanitize_source_name(name)     # Safe filenames
+sanitize_email_header(text)    # SMTP header injection
+
+# Protocol validation
+validate_hostname(host)        # RFC-compliant hostname
+validate_unc_path(unc)         # Windows UNC paths
+validate_email(email)          # Email format
+```
+
+### Security Checklist
+
+- [x] No `shell=True` in subprocess calls
+- [x] All user inputs validated before use
+- [x] Path traversal (`../`) blocked everywhere
+- [x] Symlinks not followed during scans
+- [x] Log messages sanitized (no newlines)
+- [x] Credentials never appear in logs
+- [x] Timeouts on all external operations
+- [x] Length limits on all string inputs
+
+### Reporting Vulnerabilities
+
+If you discover a security vulnerability, please email **security@example.com** instead of opening a public issue.
+
 ## 🖥️ Backrest WebUI
 
 Backrest provides a modern web interface on port **9898**:
@@ -206,24 +261,49 @@ sudo systemctl status backrest
 journalctl -u backrest -f
 ```
 
+### Securing Backrest
+
+For production, put Backrest behind a reverse proxy with authentication:
+
+```nginx
+# /etc/nginx/sites-available/backrest
+server {
+    listen 443 ssl;
+    server_name backup.example.com;
+    
+    ssl_certificate /etc/letsencrypt/live/backup.example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/backup.example.com/privkey.pem;
+    
+    auth_basic "Backup System";
+    auth_basic_user_file /etc/nginx/.htpasswd;
+    
+    location / {
+        proxy_pass http://127.0.0.1:9898;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+```
+
 ## 📁 Project Structure
 
 ```
 backup-system/
 ├── src/
 │   ├── backup.py          # Main orchestrator
-│   ├── core.py            # Mount/umount, utilities
-│   ├── restic_wrapper.py  # Restic CLI wrapper
-│   ├── security.py        # Anomaly detection
-│   └── notify.py          # Notifications
+│   ├── core.py            # Mount/umount, utilities, security functions
+│   ├── restic_wrapper.py  # Restic CLI wrapper with input validation
+│   ├── security.py        # Anomaly detection, baseline management
+│   └── notify.py          # Notifications with sanitization
 ├── examples/
 │   └── config.yaml        # Example configuration
 ├── docs/
 │   ├── ARCHITETTURA.md    # Architecture (Italian)
 │   └── BACKREST.md        # Backrest setup guide
 ├── setup.sh               # Installer
-├── requirements.txt
-├── LICENSE
+├── requirements.txt       # Python dependencies
+├── CONTRIBUTING.md        # Contribution guidelines
+├── LICENSE                # MIT License
 └── README.md
 ```
 
@@ -249,6 +329,9 @@ restic -r /mnt/backup/restic-repo check --read-data
 
 # Diff between snapshots
 restic -r /mnt/backup/restic-repo diff abc123 def456
+
+# Unlock stale locks
+restic -r /mnt/backup/restic-repo unlock
 ```
 
 ## 🆚 Why Restic over rsync?
@@ -282,6 +365,14 @@ Sistema di backup enterprise per ambienti misti Linux/Windows. Utilizza **Restic
 - **Multi-cloud**: S3, B2, Azure, GCS, SFTP
 - **WebUI**: Backrest per gestione e restore
 
+### Sicurezza
+
+Il codice è stato hardened contro:
+- **Command Injection**: nessun uso di `shell=True`
+- **Path Traversal**: validazione di tutti i path
+- **Log Injection**: sanitizzazione dei messaggi
+- **SMTP Injection**: validazione header email
+
 ### Installazione rapida
 
 ```bash
@@ -304,6 +395,13 @@ sudo systemctl start backrest
 ## Contributing
 
 Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+When contributing security-related code:
+1. Use the existing validation functions from `core.py`
+2. Never use `shell=True` in subprocess
+3. Always validate external inputs
+4. Add appropriate length limits
+5. Test with malicious inputs (path traversal, injection)
 
 ## License
 

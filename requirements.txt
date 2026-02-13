@@ -1,4 +1,67 @@
-# Backup System v3.0 — Python Dependencies
-# Install with: pip install -r requirements.txt
+# ═══════════════════════════════════════════════════════════════
+#  Backup System v3.0 — Python Dependencies
+# ═══════════════════════════════════════════════════════════════
+#
+#  Install with: pip install -r requirements.txt
+#
+#  Note: Most dependencies are part of Python standard library.
+#        Only PyYAML is strictly required.
+#
+# ═══════════════════════════════════════════════════════════════
 
-PyYAML>=6.0
+# Configuration file parsing (REQUIRED)
+PyYAML>=6.0,<7.0
+
+# ═══════════════════════════════════════════════════════════════
+#  STANDARD LIBRARY (included with Python 3.10+, no install needed)
+# ═══════════════════════════════════════════════════════════════
+#
+#  The following modules are used but don't require installation:
+#
+#  - os, sys, re           — System operations
+#  - json                  — JSON parsing
+#  - subprocess            — External commands
+#  - logging               — Log management
+#  - pathlib               — Path operations
+#  - datetime              — Date/time handling
+#  - dataclasses           — Data structures
+#  - collections           — Counter for statistics
+#  - typing                — Type hints
+#  - smtplib               — Email sending
+#  - email.mime.*          — Email formatting
+#  - urllib.request        — HTTP requests (webhooks)
+#  - fcntl                 — File locking
+#  - concurrent.futures    — Parallel execution
+#  - argparse              — CLI arguments
+#
+# ═══════════════════════════════════════════════════════════════
+
+# ═══════════════════════════════════════════════════════════════
+#  OPTIONAL DEPENDENCIES (for development/testing)
+# ═══════════════════════════════════════════════════════════════
+
+# Uncomment for development:
+# pytest>=7.0              # Testing framework
+# pytest-cov>=4.0          # Coverage reports
+# black>=23.0              # Code formatting
+# flake8>=6.0              # Linting
+# mypy>=1.0                # Type checking
+# bandit>=1.7              # Security linting
+
+# ═══════════════════════════════════════════════════════════════
+#  SYSTEM DEPENDENCIES (install via apt, not pip)
+# ═══════════════════════════════════════════════════════════════
+#
+#  The following must be installed via system package manager:
+#
+#  sudo apt install -y \
+#      restic \
+#      cifs-utils \
+#      smbclient \
+#      python3 \
+#      python3-pip \
+#      python3-yaml
+#
+#  Backrest is installed separately (see setup.sh)
+#
+# ═══════════════════════════════════════════════════════════════

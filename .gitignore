@@ -1,47 +1,125 @@
-# Python
+# ═══════════════════════════════════════════════════════════════
+#  Backup System v3.0 — Git Ignore
+# ═══════════════════════════════════════════════════════════════
+
+# ─── Python ───────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *$py.class
-*.egg-info/
-dist/
+*.so
+.Python
 build/
+develop-eggs/
+dist/
+downloads/
+eggs/
 .eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
 venv/
+ENV/
+env/
 .venv/
 
-# IDE
-.vscode/
+# ─── IDE / Editor ─────────────────────────────────────────────
 .idea/
+.vscode/
 *.swp
 *.swo
 *~
+.project
+.pydevproject
+.settings/
+*.sublime-workspace
+*.sublime-project
 
-# OS
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
-logs/
-
-# Secrets — NEVER COMMIT THESE
-restic.password
-*.password
-creds_*
-*.pem
-*.key
-
-# State files (generated at runtime)
-*.lock
-history.json
-baseline_*.json
-report_*.json
-
-# Restic cache and repo (local testing)
-restic-repo/
-cache/
-
-# Test
+# ─── Testing ──────────────────────────────────────────────────
 .pytest_cache/
 .coverage
 htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# ─── SECURITY: Sensitive Files (NEVER COMMIT!) ────────────────
+# These files contain credentials and must NEVER be in git
+
+# Restic password (encryption key)
+restic.password
+*.password
+
+# Windows/CIFS credentials
+creds_*
+credentials_*
+*.credentials
+
+# Any key files
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Config with embedded secrets (use config.yaml.example instead)
+config.yaml
+!examples/config.yaml
+
+# ─── State Files ──────────────────────────────────────────────
+# These are generated at runtime
+
+# Baseline files (anomaly detection)
+baseline_*.json
+
+# State files
+retention_state.json
+last_integrity_check.json
+
+# Reports (may contain sensitive paths)
+report_*.json
+
+# History (90 days of backup history)
+history.json
+
+# ─── Logs ─────────────────────────────────────────────────────
+*.log
+logs/
+
+# ─── Backup Data (obviously don't commit backups!) ────────────
+/mnt/
+*.restic
+restic-repo/
+
+# ─── OS Files ─────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ─── Temporary Files ──────────────────────────────────────────
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
+.rsync-partial/
+
+# ─── Distribution / Packaging ─────────────────────────────────
+*.tar.gz
+*.zip
+*.deb
+*.rpm
