@@ -1,5 +1,4 @@
 <div align="center">
-<img width="2400" height="1260" alt="backup-system-map-linkedin" src="https://github.com/user-attachments/assets/d5b6f3b3-d90c-4fc0-b267-30132b273289" />
 
 
 # 🛡️ Backup System v3.0
@@ -17,7 +16,7 @@
 
 [Features](#-features) · [Quick Start](#-quick-start) · [Configuration](#-configuration) · [Security](#-security) · [Backrest UI](#-backrest-webui) · [Italiano 🇮🇹](#italiano)
 
-![Uploading backup-system-map-linkedin.png…]()
+<img width="2400" height="1260" alt="backup-system-map-linkedin" src="https://github.com/user-attachments/assets/d5b6f3b3-d90c-4fc0-b267-30132b273289" />
 
 </div>
 
