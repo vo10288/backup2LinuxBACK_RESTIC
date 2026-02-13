@@ -15,6 +15,8 @@
 
 [Features](#-features) · [Quick Start](#-quick-start) · [Configuration](#-configuration) · [Security](#-security) · [Backrest UI](#-backrest-webui) · [Italiano 🇮🇹](#italiano)
 
+![Uploading backup-system-map-linkedin.png…]()
+
 </div>
 
 ---
